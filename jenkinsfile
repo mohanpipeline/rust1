@@ -5,11 +5,6 @@ pipeline {
             args '-u root:root'
         }
     }
-    environment {
-        PATH = "$HOME/.cargo/bin:$PATH"
-    }
-    
-
     stages { 
         stage("git clone stage") { 
             steps { 
