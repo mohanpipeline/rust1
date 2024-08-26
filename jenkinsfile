@@ -16,7 +16,7 @@ pipeline {
         
         stage("cargo build") {
             steps {
-                sh 'source ~/.bashrc'
+                sh 'PATH="$HOME/.cargo/bin:$PATH'
                 sh 'cargo build --release'
             }
         }
