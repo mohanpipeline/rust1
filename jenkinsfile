@@ -1,5 +1,8 @@
 pipeline { 
     agent any
+    environment {
+        PATH = "$HOME/.cargo/bin:$PATH"
+    }
 
 
     stages { 
@@ -17,7 +20,7 @@ pipeline {
         
         stage("cargo build") {
             steps {
-                sh 'PATH="$HOME/.cargo/bin:$PATH" cargo build --release'
+                sh ' cargo build --release'
             }
         }
     }
