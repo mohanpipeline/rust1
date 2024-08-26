@@ -1,8 +1,7 @@
 pipeline { 
     agent any
-     environment {
-        CARGO_HOME = "${HOME}/.cargo"
-        PATH = "${CARGO_HOME}/bin:${env.PATH}"
+    environment {
+        PATH = "${HOME}/.cargo/bin:${env.PATH}"
     }
     stages { 
         stage("git clone stage") { 
