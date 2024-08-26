@@ -1,5 +1,9 @@
 pipeline { 
     agent any
+    tools {
+        // Use the Cargo installation managed by Jenkins
+        cargo 'rust-toolchain'
+    }
    
     stages { 
         stage("git clone stage") { 
@@ -16,7 +20,7 @@ pipeline {
         
         stage("cargo build") {
             steps {
-                sh '$HOME/.cargo/bin/cargo cargo build --release'
+                sh ' cargo build --release'
             }
         }
     }
