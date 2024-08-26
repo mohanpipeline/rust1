@@ -15,7 +15,12 @@ pipeline {
         
         stage("cargo build") {
             steps {
-                sh ' cargo build --release'
+               sh '''
+                    export PATH=$HOME/.cargo/bin:$PATH
+                    which cargo
+                    cargo --version
+                    cargo build --release
+                '''
             }
         }
     }
