@@ -16,7 +16,7 @@ pipeline {
         stage("cargo build") {
             steps {
                sh '''
-                    which cargo
+                    cargo build
                 '''
             }
         }
