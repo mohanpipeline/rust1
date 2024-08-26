@@ -1,0 +1,61 @@
+pipeline { 
+    agent any 
+
+    stages { 
+        stage("git clone stage") { 
+            steps { 
+                git branch: 'main', url: 'https://github.com/mohansourcecode/rust1.git'
+            }
+        }
+        
+        stage("print all the files") {
+            steps {
+                sh 'ls -l'
+            }
+        }
+        
+        stage("cargo build") {
+            steps {
+                sh 'cargo build --release'
+            }
+        }
+        
+        stage("displaying files") {
+            steps {
+                sh 'ls -l'
+            }
+        }
+
+        stage("perform the sonar-scanner") {
+            steps {
+                sh 'sonar-scanner'
+            }
+        }
+
+        stage("performing the trivy scan") {
+            steps {
+                sh 'trivy fs . > trivyfs.txt'
+            }
+        }
+        
+        stage("displaying files") {
+            steps {
+                sh 'ls -l'
+            }
+        }
+        
+        stage("building the docker image") {
+            steps {
+                sh 'docker system prune -f'
+                sh 'docker container prune -f'
+                sh 'docker build -t mohanrust:1.0 .'
+            }
+        }
+        
+        stage("performing trivy image scan") {
+            steps {
+                sh 'trivy image mohanrust:1.0 > trivyimage.txt'
+            }
+        }
+    }
+}
