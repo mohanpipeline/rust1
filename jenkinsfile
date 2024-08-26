@@ -1,8 +1,7 @@
 pipeline { 
     agent any
-    environment {
-        // Define environment variables, including paths
-        CARGO_HOME = '/var/lib/jenkins/.cargo'
+     environment {
+        CARGO_HOME = "${HOME}/.cargo"
         PATH = "${CARGO_HOME}/bin:${env.PATH}"
     }
     stages { 
