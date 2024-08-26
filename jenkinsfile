@@ -19,7 +19,10 @@ pipeline {
         stage("cargo build") {
             steps {
                sh '''
-                    cargo build
+               echo "PATH=$PATH"
+                cargo --version
+                cargo build
+                    
                 '''
             }
         }
